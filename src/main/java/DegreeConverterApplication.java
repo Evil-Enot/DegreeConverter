@@ -53,11 +53,11 @@ public class DegreeConverterApplication {
     }
 
     private static boolean checkParameters(int i, String[] parts) {
-        return !parts[i].toLowerCase().equals("-k") && !parts[i].toLowerCase().equals("-f") && !parts[i].toLowerCase().equals("-c");
+        return !parts[i].equalsIgnoreCase("-k") && !parts[i].equalsIgnoreCase("-f") && !parts[i].equalsIgnoreCase("-c");
     }
 
     private static void convertFromKelvin(ArrayList<Double> numbers, ArrayList<String> lastParameter) {
-        for (String parameter: lastParameter) {
+        for (String parameter : lastParameter) {
             switch (parameter.toLowerCase()) {
                 case "-c":
                     for (double degrees : numbers) {
@@ -86,7 +86,7 @@ public class DegreeConverterApplication {
     }
 
     private static void convertFromCelsius(ArrayList<Double> numbers, ArrayList<String> lastParameter) {
-        for (String parameter: lastParameter) {
+        for (String parameter : lastParameter) {
             switch (parameter.toLowerCase()) {
                 case "-k":
                     for (double degrees : numbers) {
@@ -115,7 +115,7 @@ public class DegreeConverterApplication {
     }
 
     private static void convertFromFahrenheit(ArrayList<Double> numbers, ArrayList<String> lastParameter) {
-        for (String parameter: lastParameter) {
+        for (String parameter : lastParameter) {
             switch (parameter.toLowerCase()) {
                 case "-c":
                     for (double degrees : numbers) {
