@@ -4,12 +4,17 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class DegreeConverterApplication {
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println();
         System.out.println("Enter your command according to the format: -(Initial unit of measure) numbers -(Final unit of measure):");
 
         String line = reader.readLine();
+        degreeConverter(line);
+    }
+
+    private static void degreeConverter(String line) throws IOException {
         while (!line.equals("-stop")) {
             String[] parts = line.split(" ");
 
@@ -28,19 +33,24 @@ public class DegreeConverterApplication {
                     parametersForOutput.add(parts[count++]);
                 }
 
+                ArrayList<String> results = new ArrayList<>();
+
                 if (numbers.isEmpty()) {
                     System.out.println("Error: Insufficient parameters");
                 } else {
                     System.out.println();
                     switch (parts[0].toLowerCase()) {
                         case "-f":
-                            convertFromFahrenheit(numbers, parametersForOutput);
+                            results = convertFromFahrenheit(numbers, parametersForOutput);
+                            printResult(results);
                             break;
                         case "-c":
-                            convertFromCelsius(numbers, parametersForOutput);
+                            results = convertFromCelsius(numbers, parametersForOutput);
+                            printResult(results);
                             break;
                         case "-k":
-                            convertFromKelvin(numbers, parametersForOutput);
+                            results = convertFromKelvin(numbers, parametersForOutput);
+                            printResult(results);
                             break;
                         default:
                             System.out.println("Error: Incorrect parameter");
@@ -52,95 +62,88 @@ public class DegreeConverterApplication {
         }
     }
 
-    private static boolean checkParameters(int i, String[] parts) {
+    private static void printResult(ArrayList<String> results) {
+        for (String line : results) {
+            System.out.println(line.trim());
+        }
+        System.out.println();
+    }
+
+    public static boolean checkParameters(int i, String[] parts) {
         return !parts[i].equalsIgnoreCase("-k") && !parts[i].equalsIgnoreCase("-f") && !parts[i].equalsIgnoreCase("-c");
     }
 
-    private static void convertFromKelvin(ArrayList<Double> numbers, ArrayList<String> lastParameter) {
+    public static ArrayList<String> convertFromKelvin(ArrayList<Double> numbers, ArrayList<String> lastParameter) {
+        ArrayList<String> result = new ArrayList<>();
+
         for (String parameter : lastParameter) {
             switch (parameter.toLowerCase()) {
                 case "-c":
                     for (double degrees : numbers) {
-                        String result = String.format("%.2f", degrees - 273.15);
-                        System.out.println("Your input: " + degrees + "°K");
-                        System.out.println("Result: " + result + "°C");
+                        result.add("Result: " + String.format("%.2f", degrees - 273.15) + "°C");
                     }
                     break;
                 case "-f":
                     for (double degrees : numbers) {
-                        String result = String.format("%.2f", degrees * 1.8 - 459.67);
-                        System.out.println("Your input: " + degrees + "°K");
-                        System.out.println("Result: " + result + "°F");
+                        result.add("Result: " + String.format("%.2f", degrees * 1.8 - 459.67) + "°F");
                     }
                     break;
                 case "-k":
                     for (double degrees : numbers) {
-                        System.out.println("Your input: " + degrees + "°K");
-                        System.out.println("I don't understand why you need this, but the result is: " + degrees + "°K");
+                        result.add("I don't understand why you need this, but the result is: " + degrees + "°K");
                     }
                     break;
             }
-            System.out.println("<==================================>");
-            System.out.println();
         }
+        return result;
     }
 
-    private static void convertFromCelsius(ArrayList<Double> numbers, ArrayList<String> lastParameter) {
+    public static ArrayList<String> convertFromCelsius(ArrayList<Double> numbers, ArrayList<String> lastParameter) {
+        ArrayList<String> result = new ArrayList<>();
         for (String parameter : lastParameter) {
             switch (parameter.toLowerCase()) {
                 case "-k":
                     for (double degrees : numbers) {
-                        String result = String.format("%.2f", degrees + 273.15);
-                        System.out.println("Your input: " + degrees + "°C");
-                        System.out.println("Result: " + result + "°K");
+                        result.add("Result: " + String.format("%.2f", degrees + 273.15) + "°K");
                     }
                     break;
                 case "-f":
                     for (double degrees : numbers) {
-                        String result = String.format("%.2f", degrees * 1.8 + 32);
-                        System.out.println("Your input: " + degrees + "°C");
-                        System.out.println("Result: " + result + "°F");
+                        result.add("Result: " + String.format("%.2f", degrees * 1.8 + 32) + "°F");
                     }
                     break;
                 case "-c":
                     for (double degrees : numbers) {
-                        System.out.println("Your input: " + degrees + "°C");
-                        System.out.println("I don't understand why you need this, but the result is: " + degrees + "°C");
+                        result.add("I don't understand why you need this, but the result is: " + degrees + "°C");
                     }
                     break;
             }
-            System.out.println("<==================================>");
-            System.out.println();
         }
+        return result;
     }
 
-    private static void convertFromFahrenheit(ArrayList<Double> numbers, ArrayList<String> lastParameter) {
+
+    public static ArrayList<String> convertFromFahrenheit(ArrayList<Double> numbers, ArrayList<String> lastParameter) {
+        ArrayList<String> result = new ArrayList<>();
         for (String parameter : lastParameter) {
             switch (parameter.toLowerCase()) {
                 case "-c":
                     for (double degrees : numbers) {
-                        String result = String.format("%.2f", (degrees - 32) / 1.8);
-                        System.out.println("Your input: " + degrees + "°F");
-                        System.out.println("Result: " + result + "°C");
+                        result.add("Result: " + String.format("%.2f", (degrees - 32) / 1.8) + "°C");
                     }
                     break;
                 case "-k":
                     for (double degrees : numbers) {
-                        String result = String.format("%.2f", (degrees + 459.67) / 1.8);
-                        System.out.println("Your input: " + degrees + "°F");
-                        System.out.println("Result: " + result + "°K");
+                        result.add("Result: " + String.format("%.2f", (degrees + 459.67) / 1.8) + "°K");
                     }
                     break;
                 case "-f":
                     for (Double degrees : numbers) {
-                        System.out.println("Your input: " + degrees + "°F");
-                        System.out.println("I don't understand why you need this, but the result is: " + degrees + "°F");
+                        result.add("I don't understand why you need this, but the result is: " + degrees + "°F");
                     }
-
                     break;
             }
-            System.out.println("<==================================>");
-            System.out.println();
         }
+        return result;
     }
 }

@@ -1,0 +1,9 @@
+language: java
+jdk: oraclejdk11
+
+notifications:
+  email:
+    recipients:
+      - evil.enot.00@gmail.com
+    on_success: always # default: change
+    on_failure: always # default: always
