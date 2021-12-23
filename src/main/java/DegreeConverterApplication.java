@@ -75,6 +75,7 @@ public class DegreeConverterApplication {
 
     public static ArrayList<String> convertFromKelvin(ArrayList<Double> numbers, ArrayList<String> lastParameter) {
         ArrayList<String> result = new ArrayList<>();
+
         for (String parameter : lastParameter) {
             switch (parameter.toLowerCase()) {
                 case "-c":
@@ -120,6 +121,7 @@ public class DegreeConverterApplication {
         }
         return result;
     }
+
 
     public static ArrayList<String> convertFromFahrenheit(ArrayList<Double> numbers, ArrayList<String> lastParameter) {
         ArrayList<String> result = new ArrayList<>();
