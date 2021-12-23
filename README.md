@@ -23,29 +23,15 @@
 
 Вывод программы будет следующий:
 ```
-Your input: 0.0°C
 Result: 32,00°F
-Your input: 10.0°C
 Result: 50,00°F
-Your input: 100.0°C
 Result: 212,00°F
-<==================================>
-
-Your input: 0.0°C
 Result: 273,15°K
-Your input: 10.0°C
 Result: 283,15°K
-Your input: 100.0°C
 Result: 373,15°K
-<==================================>
-
-Your input: 0.0°C
 I don't understand why you need this, but the result is: 0.0°C
-Your input: 10.0°C
 I don't understand why you need this, but the result is: 10.0°C
-Your input: 100.0°C
 I don't understand why you need this, but the result is: 100.0°C
-<==================================>
 
 Enter new command or -stop
 ```
@@ -63,3 +49,6 @@ Enter new command or -stop
 2. Сбилдить докер контейнер, введя команду: `docker build -t degreeconverter .`;
 3. Запустить контейнер, введя команду: `docker run -it degreeconverter`;
 4. Начать работать с сервисом
+
+## CI система
+В качестве CI системы был выбран Travis CI. При создании пулл реквестов проходит проверка, что проект работает
