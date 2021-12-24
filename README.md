@@ -1,4 +1,7 @@
 # Degree converter
+CI для `main`:  [![Build Status](https://app.travis-ci.com/Evil-Enot/DegreeConverter.svg?branch=master)](https://app.travis-ci.com/Evil-Enot/DegreeConverter)
+
+CI для `develop`:  [![Build Status](https://app.travis-ci.com/Evil-Enot/DegreeConverter.svg?branch=master)](https://app.travis-ci.com/Evil-Enot/DegreeConverter)
 
 Конвертер градусов - сервис, позволяющий вам переводить градусы из одних единиц измерений в другие. На данный момент 
 реализована поддержка 3-х основных единиц измерения: Цельсии (-c/-C), Кельвины(-k/-K) и Фаренгейты(-f/-F).
